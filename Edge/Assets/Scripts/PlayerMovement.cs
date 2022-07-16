@@ -8,10 +8,12 @@ public class PlayerMovement : MonoBehaviour
     public float speed = 5;
     public float rotationSpeed = 720;
 
+    private CharacterController characterController;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        characterController = GetComponent<CharacterController>();
     }
 
     // Update is called once per frame
@@ -23,7 +25,7 @@ public class PlayerMovement : MonoBehaviour
         Vector3 movementDirection = new Vector3(horizontalInput, 0, verticalInput);
         movementDirection.Normalize();
 
-        transform.Translate(movementDirection * speed * Time.deltaTime, Space.World);
+        characterController.SimpleMove(movementDirection * speed);
 
         if (movementDirection != Vector3.zero){
             Quaternion toRotation = Quaternion.LookRotation(movementDirection, Vector3.up);
