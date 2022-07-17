@@ -8,11 +8,13 @@ public class PlayerMovement : MonoBehaviour
     public float speed = 5;
     public float rotationSpeed = 720;
 
+    private Animator animator;
     private CharacterController characterController;
 
     // Start is called before the first frame update
     void Start()
     {
+        animator = GetComponent<Animator>();
         characterController = GetComponent<CharacterController>();
     }
 
@@ -28,9 +30,13 @@ public class PlayerMovement : MonoBehaviour
         characterController.SimpleMove(movementDirection * speed);
 
         if (movementDirection != Vector3.zero){
+            animator.SetBool("IsMoving", true);
             Quaternion toRotation = Quaternion.LookRotation(movementDirection, Vector3.up);
 
             transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotation, rotationSpeed);
+        }
+        else{
+            animator.SetBool("IsMoving", false);
         }
     }
 }
