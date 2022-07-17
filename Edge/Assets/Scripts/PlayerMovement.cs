@@ -6,7 +6,7 @@ public class PlayerMovement : MonoBehaviour
 {
 
     public float speed = 10;
-    public float rotationSpeed = 1;
+    public float rotationSpeed = 3;
 
     private Animator animator;
     private CharacterController characterController;
