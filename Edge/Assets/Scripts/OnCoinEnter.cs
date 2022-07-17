@@ -4,16 +4,15 @@ using UnityEngine;
 
 public class OnCoinEnter : MonoBehaviour
 {
-    public float speed;
-    public GameObject obj;
+    public Vector3 rotationSpeed;
     void Start()
     {
         
     }
-
-    private void OnTriggerEnter(Collider other)
+    private void Update()
     {
-        print(1);
-        obj.transform.Translate(8, 10, -6);
+        transform.Rotate(rotationSpeed * Time.deltaTime);
     }
+
+
 }
