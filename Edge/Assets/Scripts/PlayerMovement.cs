@@ -6,7 +6,7 @@ public class PlayerMovement : MonoBehaviour
 {
 
     public float speed = 10;
-    public float rotationSpeed = 720;
+    public float rotationSpeed = 1;
 
     private Animator animator;
     private CharacterController characterController;
@@ -25,9 +25,10 @@ public class PlayerMovement : MonoBehaviour
         float verticalInput = Input.GetAxis("Vertical");
 
         Vector3 movementDirection = new Vector3(horizontalInput, 0, verticalInput);
+        float magnitude = Mathf.Clamp01(movementDirection.magnitude) * speed;
         movementDirection.Normalize();
 
-        characterController.SimpleMove(movementDirection * speed);
+        characterController.SimpleMove(movementDirection * magnitude);
 
         if (movementDirection != Vector3.zero){
             animator.SetBool("IsMoving", true);
