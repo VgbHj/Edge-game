@@ -6,7 +6,6 @@ public class PlayerMovement : MonoBehaviour
 {
 
     public float speed = 10;
-    public float rotationSpeed = 2;
     public float jumpButtonGracePeriod;
     public float gravityMultiplier;
     public float jumpHeight;
