@@ -7,16 +7,11 @@ public class PlayerMovement : MonoBehaviour
 
     public float speed = 10;
     public float rotationSpeed = 1;
-    public float jumpButtonGracePeriod;
     public float gravityMultiplier;
-    public float jumpHeight;
 
     private Animator animator;
     private CharacterController characterController;
     private float ySpeed;
-    private float originalStepOffset;
-    private float? lastGroundedTime;
-    private float? jumpButtonPressedTime;
 
     // Start is called before the first frame update
     void Start()
@@ -38,34 +33,13 @@ public class PlayerMovement : MonoBehaviour
         float gravity = Physics.gravity.y * gravityMultiplier;
         ySpeed += gravity * Time.deltaTime;
 
-        if (characterController.isGrounded){
-            lastGroundedTime = Time.time;
-        }
-
-        if (Input.GetButtonDown("Jump")){
-            jumpButtonPressedTime = Time.time;
-        }
-
-
-        if (Time.time - lastGroundedTime <= jumpButtonGracePeriod)
-        {
-            characterController.stepOffset = originalStepOffset;
+        if(characterController.isGrounded){
             ySpeed = -0.5f;
-
-            if (Time.time - jumpButtonPressedTime <= jumpButtonGracePeriod)
-            {
-                ySpeed = Mathf.Sqrt(jumpHeight * -2 * gravity);;
-                jumpButtonPressedTime = null;
-                lastGroundedTime = null;
-            }
-        }
-        else{
-            characterController.stepOffset = 0;
         }
 
 
         Vector3 velocity = movementDirection * magnitude;
-        velocity.y = ySpeed;
+        velocity = AdjustVelocityToSlope(velocity, ySpeed);
         characterController.Move(velocity * Time.deltaTime);
 
         if (movementDirection != Vector3.zero){
@@ -77,5 +51,21 @@ public class PlayerMovement : MonoBehaviour
         else{
             animator.SetBool("IsMoving", false);
         }
+    }
+
+    private Vector3 AdjustVelocityToSlope(Vector3 velocity, float ySpeed){
+        var ray = new Ray(transform.position, Vector3.down);
+
+        if (Physics.Raycast(ray, out RaycastHit hitInfo, 10f)){
+            var slopeRotation = Quaternion.FromToRotation(Vector3.up, hitInfo.normal);
+            var abjustedVelocity = slopeRotation * velocity;
+
+            if (abjustedVelocity.y < 0){
+                return abjustedVelocity;
+            }
+        }
+
+        velocity.y += ySpeed;
+        return velocity;
     }
 }
