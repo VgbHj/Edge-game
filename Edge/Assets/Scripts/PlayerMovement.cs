@@ -7,16 +7,11 @@ public class PlayerMovement : MonoBehaviour
 
     public float speed = 10;
     public float rotationSpeed = 1;
-    public float jumpButtonGracePeriod;
     public float gravityMultiplier;
-    public float jumpHeight;
 
     private Animator animator;
     private CharacterController characterController;
     private float ySpeed;
-    private float originalStepOffset;
-    private float? lastGroundedTime;
-    private float? jumpButtonPressedTime;
 
     // Start is called before the first frame update
     void Start()
@@ -44,7 +39,7 @@ public class PlayerMovement : MonoBehaviour
 
 
         Vector3 velocity = movementDirection * magnitude;
-        velocity.y = ySpeed;
+        velocity = AdjustVelocityToSlope(velocity, ySpeed);
         characterController.Move(velocity * Time.deltaTime);
 
         if (movementDirection != Vector3.zero){
@@ -58,10 +53,10 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    private Vector3 AdjustVelocityToSlope(Vector3 velocity){
+    private Vector3 AdjustVelocityToSlope(Vector3 velocity, float ySpeed){
         var ray = new Ray(transform.position, Vector3.down);
 
-        if (Physics.Raycast(ray, out RaycastHit hitInfo, 0.2f)){
+        if (Physics.Raycast(ray, out RaycastHit hitInfo, 10f)){
             var slopeRotation = Quaternion.FromToRotation(Vector3.up, hitInfo.normal);
             var abjustedVelocity = slopeRotation * velocity;
 
@@ -70,6 +65,7 @@ public class PlayerMovement : MonoBehaviour
             }
         }
 
+        velocity.y += ySpeed;
         return velocity;
     }
 }
