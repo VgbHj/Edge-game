@@ -57,4 +57,19 @@ public class PlayerMovement : MonoBehaviour
             animator.SetBool("IsMoving", false);
         }
     }
+
+    private Vector3 AdjustVelocityToSlope(Vector3 velocity){
+        var ray = new Ray(transform.position, Vector3.down);
+
+        if (Physics.Raycast(ray, out RaycastHit hitInfo, 0.2f)){
+            var slopeRotation = Quaternion.FromToRotation(Vector3.up, hitInfo.normal);
+            var abjustedVelocity = slopeRotation * velocity;
+
+            if (abjustedVelocity.y < 0){
+                return abjustedVelocity;
+            }
+        }
+
+        return velocity;
+    }
 }
