@@ -19,7 +19,7 @@ MonoBehaviour:
     width: 1920
     height: 997
   m_ShowMode: 4
-  m_Title: Scene
+  m_Title: Game
   m_RootView: {fileID: 6}
   m_MinSize: {x: 875, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
@@ -48,7 +48,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 200}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 0
-  controlID: 53
+  controlID: 63
 --- !u!114 &3
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -223,7 +223,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 200}
   m_MaxSize: {x: 16192, y: 16192}
   vertical: 1
-  controlID: 43
+  controlID: 64
 --- !u!114 &10
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -248,7 +248,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 100}
   m_MaxSize: {x: 16192, y: 8096}
   vertical: 0
-  controlID: 44
+  controlID: 65
 --- !u!114 &11
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -382,22 +382,22 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Models
+    - Assets/Scripts
     m_Globs: []
     m_OriginalText: 
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/Models
+  - Assets/Scripts
   m_LastFoldersGridSize: -1
-  m_LastProjectPath: C:\Users\HB16\Desktop\Programming\Projects\Edge-game\Edge
+  m_LastProjectPath: C:\Users\misha\Desktop\1\GameDev\Unity\Edge-game\Edge
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 26}
-    m_SelectedIDs: a4670000
-    m_LastClickedID: 26532
-    m_ExpandedIDs: 000000009067000000ca9a3b
+    scrollPos: {x: 0, y: 0}
+    m_SelectedIDs: ee680000
+    m_LastClickedID: 26862
+    m_ExpandedIDs: 00000000d4680000d6680000d8680000da680000e6680000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -425,7 +425,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 0000000090670000
+    m_ExpandedIDs: 00000000d4680000d6680000d8680000da680000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -553,9 +553,9 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 5a680000
-      m_LastClickedID: 26714
-      m_ExpandedIDs: 28d3ffffeae0ffff12eefffffcfaffff8a680000
+      m_SelectedIDs: 1a6c0000
+      m_LastClickedID: 27674
+      m_ExpandedIDs: eeadffffc6bcffff3ec8ffffa0d4ffffa4e0fffff2ecffff1cfbffff
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -804,9 +804,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: -0.028526306, y: -0.9858577, z: -15.682341}
+    m_Target: {x: 1.4992499, y: 4.30532, z: 1.6856279}
     speed: 2
-    m_Value: {x: -0.028526306, y: -0.9858577, z: -15.682341}
+    m_Value: {x: 1.4992499, y: 4.30532, z: 1.6856279}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -853,13 +853,13 @@ MonoBehaviour:
     m_GridAxis: 1
     m_gridOpacity: 0.5
   m_Rotation:
-    m_Target: {x: -0.06467961, y: -0.9316562, z: 0.20618984, w: -0.29217225}
+    m_Target: {x: -0.32437623, y: 0.08695112, z: -0.02995909, w: -0.94145244}
     speed: 2
-    m_Value: {x: -0.06467813, y: -0.93163496, z: 0.20618515, w: -0.2921656}
+    m_Value: {x: -0.3243745, y: 0.08695065, z: -0.02995893, w: -0.9414474}
   m_Size:
-    m_Target: 22.864332
+    m_Target: 15.653983
     speed: 2
-    m_Value: 22.864332
+    m_Value: 15.653983
   m_Ortho:
     m_Target: 0
     speed: 2

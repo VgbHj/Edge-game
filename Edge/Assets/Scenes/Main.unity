@@ -614,7 +614,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 10
-  rotationSpeed: 5
+  rotationSpeed: 1
 --- !u!4 &629070474 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: d3207f71fb2ed7849a35f7156409f42e, type: 3}
