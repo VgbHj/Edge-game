@@ -38,29 +38,8 @@ public class PlayerMovement : MonoBehaviour
         float gravity = Physics.gravity.y * gravityMultiplier;
         ySpeed += gravity * Time.deltaTime;
 
-        if (characterController.isGrounded){
-            lastGroundedTime = Time.time;
-        }
-
-        if (Input.GetButtonDown("Jump")){
-            jumpButtonPressedTime = Time.time;
-        }
-
-
-        if (Time.time - lastGroundedTime <= jumpButtonGracePeriod)
-        {
-            characterController.stepOffset = originalStepOffset;
+        if(characterController.isGrounded){
             ySpeed = -0.5f;
-
-            if (Time.time - jumpButtonPressedTime <= jumpButtonGracePeriod)
-            {
-                ySpeed = Mathf.Sqrt(jumpHeight * -2 * gravity);;
-                jumpButtonPressedTime = null;
-                lastGroundedTime = null;
-            }
-        }
-        else{
-            characterController.stepOffset = 0;
         }
 
 
