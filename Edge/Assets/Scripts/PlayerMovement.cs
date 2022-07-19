@@ -11,12 +11,18 @@ public class PlayerMovement : MonoBehaviour
 
     [Header("Heights")]
     [SerializeField] private float overpassHeight;
+    [SerializeField] private float hangHeight;
+    [SerializeField] private float climbUpHeight;
+    [SerializeField] private float vaultHeight;
     [SerializeField] private float stepHeight;
 
     
     [Header("Offsets")]
     [SerializeField] private Vector3 endOffset;
     [SerializeField] private Vector3 climbOriginDown;
+    
+    [Header("Animation Settings")]
+    
 
     public float speed = 10;
     public float rotationSpeed = 1;
@@ -28,6 +34,9 @@ public class PlayerMovement : MonoBehaviour
     private float ySpeed;
 
     private bool climbing;
+    private Vector3 endPosition;
+    private RaycastHit downRaycastHit;
+    private RaycastHit forwardRaycastHit;
 
     // Start is called before the first frame update
     void Start()
@@ -57,6 +66,7 @@ public class PlayerMovement : MonoBehaviour
 
         Vector3 velocity = movementDirection * magnitude;
         velocity = AdjustVelocityToSlope(velocity, ySpeed);
+        // velocity.y = ySpeed;
         characterController.Move(velocity * Time.deltaTime);
 
         if (movementDirection != Vector3.zero){
@@ -76,7 +86,13 @@ public class PlayerMovement : MonoBehaviour
         
     }
 
-    private bool CanClimb(){
+    private bool CanClimb(out RaycastHit _downRaycastHit, out RaycastHit _forwardRaycastHit, out Vector3 _endPosition){
+
+        _endPosition = Vector3.zero;
+        _downRaycastHit = new RaycastHit();
+        _forwardRaycastHit = new RaycastHit();
+
+
         bool downHit;
         bool forwardHit;
         bool overpassHit;
@@ -163,6 +179,9 @@ public class PlayerMovement : MonoBehaviour
                                 );
 
                                 if (!upSweepHit && !forwardSweepHit){
+                                    _endPosition = endPosition;
+                                    _downRaycastHit = downRaycastHit;
+                                    _forwardRaycastHit = forwardRaycastHit;
                                     return true;
                                 }
                         }
@@ -196,6 +215,16 @@ public class PlayerMovement : MonoBehaviour
         return sweepHit;
     }
 
+
+    private void InitiateClimb(){
+        climbing = true;
+        speed = 0;
+        animator.SetFloat("IsMoving", 0);
+        characterController.enabled = false;
+        rigitBody.isKinematic = true;
+
+        float climbHeight = downRaycastHit.point.y - transform.position.y;   
+    }
 
     private Vector3 AdjustVelocityToSlope(Vector3 velocity, float ySpeed){
         var ray = new Ray(transform.position, Vector3.down);
